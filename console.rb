@@ -14,7 +14,14 @@ album1 = Album.new({
   'genre' => 'pop',
   'artist_id' => artist1.id
   })
+album2 = Album.new({
+'title' => 'wonderwall',
+'genre' => 'heavy_metal',
+'artist_id' => artist1.id
+  })
+
 album1.save()
+album2.save()
 
 
 binding.pry
