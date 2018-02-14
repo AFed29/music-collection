@@ -10,6 +10,15 @@ class Album
     @artist_id = options['artist_id'].to_i
   end
 
+  def artist()
+    sql = "SELECT * FROM artists
+    WHERE id = $1;"
+    values = [@artist_id]
+    artists = SqlRunner.run(sql, values)
+    artist_hash = artists[0]
+    return Artist.new(artist_hash)
+  end
+
   def save()
     sql = "INSERT INTO albums
     (
@@ -34,8 +43,8 @@ class Album
 
   def Album.all()
     sql = "SELECT * FROM albums;"
-    results = SqlRunner.run(sql)
-    return results.map {|album| Album.new(album)}
+    albums = SqlRunner.run(sql)
+    return albums.map {|album| Album.new(album)}
   end
 
 

@@ -12,8 +12,8 @@ class Artist
     sql = "SELECT * FROM albums
     WHERE artist_id = $1;"
     values = [@id]
-    results = SqlRunner.run(sql, values)
-    return results.map { |album| Album.new(album)  }
+    albums = SqlRunner.run(sql, values)
+    return albums.map { |album| Album.new(album)  }
   end
 
   def save()
@@ -37,7 +37,7 @@ class Artist
 
   def Artist.all()
     sql = "SELECT * FROM artists;"
-    results = SqlRunner.run(sql)
-    return results.map {|artist| Artist.new(artist)}
+    artists = SqlRunner.run(sql)
+    return artists.map {|artist| Artist.new(artist)}
   end
 end
